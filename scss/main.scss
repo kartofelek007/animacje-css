@@ -1,0 +1,1275 @@
+/* ----------------------------------------- */
+/* napisy demo na sekcjach - by było wiadomo które to które */
+/* ----------------------------------------- */
+body {
+    margin: 0;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+section[class^="demo"] {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section[class^="demo"]:before {
+    content: attr(class);
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    font-size: 0.8em;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    color: #fff;
+}
+
+
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 1------------------- */
+/* ----------------------------------------- */
+.demo1 {
+    background: tomato;
+}
+
+.demo1-scroll {
+    font-size: 10px;
+    height: 4em;
+    width: 2em;
+    border: 0.2em solid rgba(white, 0.2);
+    border-radius: 2em;
+}
+.demo1-scroll:before { //koleczka
+    content: '';
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 0.7em;
+    background: #fff;
+    display: block;
+    margin: 0.3em auto;
+    animation: demo1-scroll-anim 0.5s 0s infinite alternate ease-in-out;
+}
+
+@keyframes demo1-scroll-anim {
+    50% {
+        height: 1.7em;
+    }
+    100% {
+        margin-top: 2.4em;
+    }
+}
+
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 2 ------------------ */
+/* ----------------------------------------- */
+.demo2 {
+    background: mediumpurple;
+}
+
+.demo2-loading { //loading zewnetrzny
+    font-size: 10px;
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    border: 0.2em solid rgba(white, 0.2);
+    border-right-color: white;
+    animation: demo2-loading-anim 0.5s 0s infinite linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.demo2-loading:before { //loading wewnetrzny
+    content: '';
+    width: 3.8em;
+    height: 3.8em;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 0.2em solid rgba(white, 0.2);
+    border-right-color: white;
+    display: block;
+    animation: demo2-loading-anim 0.3s 0s reverse infinite linear;
+}
+
+
+@keyframes demo2-loading-anim {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 3 ------------------ */
+/* ----------------------------------------- */
+.demo3 {
+    background: gold;
+}
+
+.demo3-loading {
+    $dotSize : 1em;
+    $gap : 0.2em;
+
+    font-size: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    width: (3 * ($dotSize + ($gap * 2)));
+
+    span {
+        margin: $gap;
+        width: $dotSize;
+        height: $dotSize;
+        display: block;
+        border-radius: 50%;
+        background: #fff;
+
+        @for $i from 1 through 9 {
+            &:nth-of-type(#{$i}) {
+                $delay : (0.05 * $i) * 1s;
+                animation: demo3-loading-anim 1s $delay infinite;
+            }
+        }
+    }
+}
+
+@keyframes demo3-loading-anim {
+    50% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 4 ------------------ */
+/* ----------------------------------------- */
+.demo4 {
+    background: Darkslategray;
+}
+.demo4-loading {
+    font-size: 10px;
+    transform: rotateX(60deg);
+    position: relative;
+}
+.demo4-loading:before { //sloneczko
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background: #fff;
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0.5em #fff, 0 0 1em #fff, 0 0 1em #fff;
+}
+.demo4-loading span { //duza os
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    width: 7em;
+    height: 7em;
+    border-radius: 50%;
+    border: 0.1em solid rgba(white, 0.2);
+    animation: demo4-loading-anim 3.5s 0s infinite linear;
+}
+.demo4-loading span:before { //duza planeta
+    content: '';
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(50%, -50%);
+}
+.demo4-loading span:nth-of-type(2) { //mala os
+    width: 4.3em;
+    height: 4.3em;
+    animation: demo4-loading-anim 2.5s 0s infinite reverse linear;
+}
+.demo4-loading span:nth-of-type(2):before { //mala planeta
+    width: 0.7em;
+    height: 0.7em;
+}
+@keyframes demo4-loading-anim {
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 5 ------------------ */
+/* ----------------------------------------- */
+.demo5 {
+    background: Blueviolet;
+}
+
+.demo5-loading {
+    font-size: 12px;
+    width: 6em;
+    height: 6em;
+    position: relative;
+}
+.demo5-loading span {
+    width: 3em;
+    height: 3em;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0) scale(1, 1);
+    transform-origin: 50% 100%;
+    animation: demo5-loading-cnt-anim 1s 0s infinite ease-in;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.demo5-loading span:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    border-radius: 0.3em;
+    box-shadow: inset 0 0 0 0.4em #fff;
+    animation: demo5-loading-anim 1s 0s infinite ease-in;
+}
+.demo5-loading:after { //shadow
+    content: '';
+    width: 5em;
+    height: 0.3em;
+    border-radius: 60%;
+    background: radial-gradient(rgba(#fff, 1) 40%, transparent 70%);
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+    opacity: 0;
+    animation: demo5-loading-anim-shadow 1s 0s infinite ease-in-out;
+}
+@keyframes demo5-loading-cnt-anim {
+    40% {
+        transform: translate(-50%, -100%) scale(1,1);
+    }
+    65% {
+        transform: translate(-50%, -130%) scale(1,1);
+    }
+    80% {
+        transform: translate(-50%, 0%) scale(1,0.8);
+    }
+    90% {
+        transform: translate(-50%, 0%) scale(1,0.7);
+    }
+}
+@keyframes demo5-loading-anim {
+    40% {
+        transform: rotate(-135deg);
+    }
+    80% {
+        transform: rotate(-270deg);
+    }
+    100% {
+        transform: rotate(-270deg);
+    }
+}
+@keyframes demo5-loading-anim-shadow {
+    40% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 0.8;
+    }
+}
+
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 6 ------------------ */
+/* ----------------------------------------- */
+.demo6 {
+    background: Springgreen;
+}
+
+.demo6-loading {
+    font-size: 12px;
+    width: 4rem;
+    height: 4rem;
+    position: relative;
+}
+.demo6-loading span {
+    width: 3em;
+    height: 0.1em;
+    background: #fff;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    animation: demo6-loading-anim 1s 0s infinite ease-in-out;
+}
+
+@keyframes demo6-loading-anim {
+    0% {
+        transform: translate(-50%, -50%);
+        width: 3em;
+        height: 0.1em;
+    }
+    25% {
+        transform: translate(-300%, -50%);
+        width: 0.8em;
+        height: 0.8em;
+        box-shadow: 0 0 1em #fff, 0 0 2em #fff;
+    }
+    35% {
+        transform: translate(-300%, -50%);
+        width: 0.8em;
+        height: 0.8em;
+        box-shadow: 0 0 1em #fff, 0 0 2em #fff;
+    }
+    50% {
+        transform: translate(-50%, -50%);
+        width: 3em;
+        height: 0.1em;
+    }
+    75% {
+        transform: translate(220%, -50%);
+        width: 0.8em;
+        height: 0.8em;
+        box-shadow: 0 0 1em #fff, 0 0 2em #fff;
+    }
+    85% {
+        transform: translate(220%, -50%);
+        width: 0.8em;
+        height: 0.8em;
+        box-shadow: 0 0 1em #fff, 0 0 2em #fff;
+    }
+}
+
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 7 ------------------ */
+/* ----------------------------------------- */
+.demo7 {
+    background: Darkblue;
+}
+.demo7-loading {
+    font-size: 13px;
+    width: 3em;
+    height: 3em;
+    border: 0.2em solid rgba(#fff, 1);
+    border-radius: 50%;
+    position: relative;
+}
+.demo7-loading span:after { //dzwonek
+    content: '';
+    width: 1em;
+    height: 0.4em;
+    border-radius: 0.2em 0.2em 0 0;
+    top: 0%;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    background: #fff;
+    transform: translate(-50%, -120%);
+}
+.demo7-loading:before,
+.demo7-loading:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, calc(-100% + 0.16em)) rotate(0deg);
+    height: 1.3em;
+    width: 0.32em;
+    border-radius: 0.15em;
+    background: rgba(#fff, 1);
+    transform-origin: 50% calc(100% - 0.16em);
+    animation: demo7-loading-anim 2s 0s infinite linear;
+    box-shadow: 0 0 0.3em rgba(#fff, 0.5);
+}
+.demo7-loading:after {
+    height: 0.9em;
+    border-radius: 1em;
+    animation: demo7-loading-anim 5s 0s infinite linear;
+}
+@keyframes demo7-loading-anim {
+    100% {
+        transform: translate(-50%, calc(-100% + 0.16em)) rotate(360deg);
+    }
+}
+
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 8 ------------------ */
+/* ----------------------------------------- */
+.demo8 {
+    background: Crimson;
+}
+.demo8-loading {
+    font-size: 10px;
+    width: 10em;
+    height: 4em;
+    overflow: hidden;
+    position: relative;
+}
+.demo8-loading:before {
+    content: '';
+    position: absolute;
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    border: 0.1em solid #fff;
+    border-color: #fff #fff transparent transparent;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, -50%) rotate(135deg);
+    animation: demo8-loading-anim 1s 0s infinite alternate ease-in-out;
+}
+@keyframes demo8-loading-anim {
+    0% {
+        transform: translate(-50%, -50%) rotate(-225deg);
+    }
+    50% {
+        border-width: 0.6em;
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(135deg);
+    }
+}
+
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 10 ----------------- */
+/* ----------------------------------------- */
+.demo9 {
+    background: Deepskyblue;
+}
+.demo9-loading {
+    font-size: 8px;
+    width: 10em;
+    height: 10em;
+    overflow: hidden;
+    position: relative;
+}
+.demo9-loading span { //fale - kontener
+    width: 100%;
+    height: 3em;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform-origin: 50% 100%;
+    transform: translate(-50%, 0) rotate(0deg);
+    overflow: hidden;
+    z-index: 2;
+}
+.demo9-loading span:before, //fale
+.demo9-loading span:after {
+    content: '';
+    width: 60em;
+    height: 60em;
+    border-radius: 29em;
+    background: rgba(#fff, 0.9);
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 2.1em;
+    transform: translate(-50%, 0) rotate(0deg);
+    animation: demo9-loading-wave 5s 0s infinite linear;
+}
+.demo9-loading span:after {
+    transform: translate(-50%, 0.2em) rotate(30deg);
+    animation-duration: 5.2s;
+    background: rgba(#fff, 1);
+}
+.demo9-loading i { //lodka
+    content: '';
+    width: 4em;
+    height: 0;
+    display: block;
+    border: 1em solid transparent;
+    border-top-color: #fff;
+    border-top-width: 1.5em;
+    transform: translate(-50%, 0);
+    position: absolute;
+    bottom: -0.3em;
+    left: 50%;
+    animation: demo9-loading-boat 3.2s 0s infinite alternate ease-in-out;
+}
+.demo9-loading i:before { //zagiel drag
+    content: '';
+    border-radius: 0.3em;
+    width: 0.3em;
+    height: 4em;
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    bottom: 1.1em;
+    transform: translate(-50%, 0);
+}
+.demo9-loading i:after { //zagiel
+    content: '';
+    width: 0;
+    height: 0;
+    border: 1.6em solid transparent;
+    border-bottom-color: rgba(#fff, 0.6);
+    border-width: 0 3em 4em 3em;
+    position: absolute;
+    left: 50%;
+    bottom: 1.8em;
+    transform: translate(-50%, 0) scaleX(-0.8);
+    animation: demo9-loading-zagiel 1.2s 0s infinite linear alternate-reverse;
+}
+@keyframes demo9-loading-boat {
+    0% {
+        transform: translate(-50%, 10%) rotate(-5deg);
+    }
+    25% {
+        transform: translate(-50%, 0%) rotate(3deg);
+    }
+    50% {
+        transform: translate(-50%, 0%) rotate(-5deg);
+    }
+    75% {
+        transform: translate(-50%, 0%) rotate(3deg);
+    }
+    100% {
+        transform: translate(-50%, 10%) rotate(5deg);
+    }
+}
+@keyframes demo9-loading-wave {
+    100% {
+        transform: translate(-50%, 0) rotate(360deg);
+    }
+}
+@keyframes demo9-loading-zagiel {
+    0% {
+        transform: translate(-50%, 0) scaleX(-0.8);
+    }
+    100% {
+        transform: translate(-50%, 0) scaleX(-0.65);
+    }
+}
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 10 ----------------- */
+/* ----------------------------------------- */
+.demo10 {
+    background: Brown;
+}
+.demo10-loading { //border
+    font-size: 10px;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    border: 0.3em solid #fff;
+    overflow: hidden;
+    position: relative;
+}
+.demo10-loading span { //koleczka
+    position: absolute;
+    width: 2.6em;
+    height: 2.6em;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    overflow: hidden;
+    animation: demo10-loading-anim 1s 0s infinite ease-in-out;
+}
+.demo10-loading span:after {
+    content: '';
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    overflow: hidden;
+    background: rgba(#fff, 1);
+    box-shadow: -1px 0 1px rgba(#fff, 0),
+                -3px 0 1px rgba(#fff, 0),
+                -5px 0 1px rgba(#fff, 0),
+                -7px 0 1px rgba(#fff, 0);
+    animation: demo10-loading-shadow-anim 1s 0s infinite ease-in-out;
+}
+@keyframes demo10-loading-anim {
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+@keyframes demo10-loading-shadow-anim {
+    0% {
+        box-shadow: -1px 0 1px rgba(#fff, 0),
+                    -3px 0 1px rgba(#fff, 0),
+                    -5px 0 1px rgba(#fff, 0),
+                    -7px 0 1px rgba(#fff, 0);
+    }
+    25% {
+        box-shadow: -1px 0 1px rgba(#fff, 1),
+                    -3px 0 1px rgba(#fff, 0.7),
+                    -5px 0 1px rgba(#fff, 0.5),
+                    -7px 0 1px rgba(#fff, 0);
+    }
+    50% {
+        box-shadow: -1px 0 1px rgba(#fff, 1),
+                    -3px 0 1px rgba(#fff, 0.7),
+                    -5px 0 1px rgba(#fff, 0.5),
+                    -7px 0 1px rgba(#fff, 0.2);
+    }
+    75% {
+        box-shadow: -1px 0 1px rgba(#fff, 1),
+                    -3px 0 1px rgba(#fff, 0.7),
+                    -5px 0 1px rgba(#fff, 0),
+                    -7px 0 1px rgba(#fff, 0);
+    }
+    100% {
+        box-shadow: -1px 0 1px rgba(#fff, 0),
+                    -3px 0 1px rgba(#fff, 0),
+                    -5px 0 1px rgba(#fff, 0),
+                    -7px 0 1px rgba(#fff, 0);
+    }
+}
+
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 11 ----------------- */
+/* ----------------------------------------- */
+.demo11 {
+    background: Coral;
+}
+.demo11-loading {
+    font-size: 10px;
+    transform: rotate(0deg);
+    box-shadow: inset 0 0 0 0.5em rgba(#fff, 0.2);
+    animation: demo11-loading 2s 0s infinite;
+    overflow: hidden;
+    border-radius: 0.2em;
+}
+.demo11-loading,
+.demo11-loading span {
+    width: 3em;
+    height: 3em;
+    position: relative;
+}
+.demo11-loading span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+.demo11-loading span:before {
+    content: '';
+    width: 3em;
+    height: 0.5em;
+    background: #fff;
+    position: absolute;
+}
+.demo11-loading span:after {
+    content: '';
+    width: 0.5em;
+    height: 3em;
+    background: #fff;
+    position: absolute;
+}
+.demo11-loading span:before {
+    left: 0;
+    top: 0;
+    transform: translate(calc(-100% + 0.5em), 0);
+    animation: demo11-loading-before-anim 2s 0s infinite;
+    transform-origin: 50% 0%;
+}
+.demo11-loading span:after {
+    right: 0;
+    bottom: 0;
+    transform: translate(0, calc(-100% + 0.5em));
+    animation: demo11-loading-after-anim 2s 0s infinite;
+    transform-origin: 100% 50%;
+}
+.demo11-loading span:nth-of-type(2) {
+    transform: translate(-50%, -50%) rotate(-180deg);
+}
+
+@keyframes demo11-loading-before-anim {
+    20% {
+        transform: translate(calc(-100% + 0.5em), 0);
+    }
+    40%, 70% {
+        transform: translate(calc(0%), 0) scale(1, 1);
+    }
+    100% {
+        transform: translate(calc(100% - 0.5em), 0);
+    }
+}
+@keyframes demo11-loading-after-anim {
+    20% {
+        transform: translate(0, calc(-100% + 0.5em));
+    }
+    40%, 70% {
+        transform: translate(calc(0%), 0) scale(1, 1);
+    }
+    100% {
+        transform: translate(0, calc(100% - 0.5em));
+    }
+}
+@keyframes demo11-loading {
+    100% {
+        transform: rotate(90deg);
+    }
+}
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 11 ----------------- */
+/* ----------------------------------------- */
+.demo12 {
+    background: Mediumspringgreen;
+}
+.demo12-loading {
+    font-size: 10px;
+    height: 4em;
+    width: 4em;
+    display: flex;
+
+    span {
+        flex-grow: 1;
+        margin: 0.1em;
+        display: block;
+        background: rgba(#fff, 0.9);
+        border-radius: 0.3em;
+    }
+
+    @for $i from 1 through 6 { //6 spanow
+        span:nth-of-type(#{$i}) {
+            $delay : (0.2 * $i) * 1s;
+            animation: demo12-loading-span-anim 1s $delay infinite alternate ease-in-out;
+        }
+    }
+}
+
+@keyframes demo12-loading-span-anim {
+    100% {
+        transform: scaleY(0.2);
+    }
+}
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 13 ----------------- */
+/* ----------------------------------------- */
+.demo13 {
+    background: tomato;
+}
+
+.demo13-loading {
+    font-size: 10px;
+    width: 4em;
+    height: 4em;
+    position: relative;
+}
+.demo13-loading span:nth-of-type(4) { //buzia
+    content: '';
+    width: 3.8em;
+    height: 3.8em;
+    background: #fff;
+    border-radius: 50%;
+    position: relative;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.demo13-loading span:nth-of-type(4):before,
+.demo13-loading span:nth-of-type(4):after { //oczy
+    content: '';
+    width: 0.5em;
+    height: 1em;
+    background-color: tomato;
+    border-radius: 0.5em;
+    position: absolute;
+    mix-blend-mode: multiply;
+    opacity: 0.9;
+    left: 1.2em;
+    bottom: 2.2em;
+    z-index: 2;
+    animation: demo13-loading-eye-anim 3s 0s infinite ease-in;
+}
+.demo13-loading span:nth-of-type(4):after {
+    left: auto;
+    right: 1.2em;
+}
+.demo13-loading span:nth-of-type(4) i { //buzia
+    width: 3em;
+    height: 3em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    overflow: hidden;
+    border-radius: 50%;
+    transform: translate(-50%, -48%);
+}
+.demo13-loading span:nth-of-type(4) i:after { //usta
+    content: '';
+    width: 3em;
+    height: 3em;
+    background: tomato;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, 50%);
+    opacity: 0.9;
+}
+.demo13-loading span:nth-of-type(4) i:before { //zeby
+    content: '';
+    width: 2em;
+    height: 0.6em;
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: calc(50% - 0.2em);
+    transform: translate(-50%, 0);
+    border-radius: 0 0 50% 50%;
+    z-index: 1;
+}
+.demo13-loading span:nth-of-type(1),
+.demo13-loading span:nth-of-type(2),
+.demo13-loading span:nth-of-type(3) {
+    content: '';
+    width: 4em;
+    height: 4em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    mix-blend-mode: overlay;
+    opacity: 0.6;
+    background: rgba(#fff, 0.7);
+}
+.demo13-loading span:nth-of-type(1) {
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: demo13-loading-anim 3s 0s infinite linear;
+}
+.demo13-loading span:nth-of-type(2) {
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: demo13-loading-anim 3s 0.3s infinite linear;
+}
+.demo13-loading span:nth-of-type(3) {
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: demo13-loading-anim 3s 0.5s infinite linear;
+}
+@keyframes demo13-loading-anim {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+@keyframes demo13-loading-eye-anim {
+    0% {
+        height: 1em;
+    }
+    3% {
+        height: 0;
+    }
+    6% {
+        height: 1em;
+    }
+}
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 14 ----------------- */
+/* ----------------------------------------- */
+.demo14 {
+    background: Darkmagenta;
+}
+.demo14-loading {
+    font-size: 10px;
+    width: 6em;
+    height: 3em;
+    position: relative;
+}
+.demo14-loading span {
+    width: 4em;
+    height: 4em;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 0.5em;
+    border-radius: 50%;
+    transform: translateX(-50%) rotate(0deg);
+    animation: demo14-loading 1s 0s infinite ease-in-out alternate;
+}
+.demo14-loading span:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 1.4em;
+    height: 1.4em;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(50%, -50%) scale(1, 0.8);
+    transform-origin: 50% 0;
+    animation: demo14-loading-span 1s 0s infinite ease-in-out alternate;
+}
+@keyframes demo14-loading {
+    100% {
+        transform: translateX(-50%) rotate(-180deg);
+    }
+}
+@keyframes demo14-loading-span {
+    50% {
+        transform: translate(50%, -50%) scale(0.7, 1.4);
+    }
+}
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 14 ----------------- */
+/* ----------------------------------------- */
+.demo15 {
+    background: Darkcyan;
+}
+.demo15-loading {
+    font-size: 10px;
+    width: 2em;
+    height: 2em;
+    position: relative;
+    border: 0.5em solid #fff;
+    border-radius: 0 0 50% 50%;
+    animation: demo15-loading 3s 0s infinite reverse linear;
+    transform: rotate(0deg);
+}
+
+@keyframes demo15-loading {
+    25% {
+        border-radius: 0 50% 50% 0.5em;
+    }
+    50% {
+        border-radius: 50% 50% 0 0;
+    }
+    75% {
+        border-radius: 50% 0 0 50%;
+    }
+   100% {
+        border-radius: 0 0 50% 50%;
+        transform: rotate(360deg);
+   }
+}
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 16 ----------------- */
+/* ----------------------------------------- */
+.demo16 {
+    background: Steelblue;
+}
+.demo16-loading {
+    font-size: 10px;
+    width: 3.2em;
+    height: 3.2em;
+    box-sizing: border-box;
+    border: 1em solid #fff;
+    position: relative;
+    border-radius: 50%;
+    animation: demo16-loading 2.6s 0s infinite reverse linear;
+    transform: rotate(0deg);
+}
+.demo16-loading:before,
+.demo16-loading:after {
+    content: '';
+    width: 1em;
+    height: 3.8em;
+    background: linear-gradient(#fff 0.8em, transparent 0.8em, transparent calc(100% - 0.8em), #fff calc(100% - 0.8em));
+    border-radius: 0.2em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.demo16-loading:after {
+    transform: translate(-50%, -50%) rotate(60deg);
+}
+.demo16-loading span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1em;
+    height: 1em;
+    z-index: 1;
+}
+.demo16-loading span:before {
+    content: '';
+    width: 1em;
+    height: 3.8em;
+    background: linear-gradient(#fff 0.8em, transparent 0.8em, transparent calc(100% - 0.8em), #fff calc(100% - 0.8em));
+    border-radius: 0.2em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(120deg);
+}
+.demo16-loading span:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: Steelblue;
+    z-index: 1;
+}
+@keyframes demo16-loading {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 16 ----------------- */
+/* ----------------------------------------- */
+.demo17 {
+    background: Goldenrod;
+}
+.demo17-loading {
+    font-size: 10px;
+    width: 3.2em;
+    height: 3.2em;
+    position: relative;
+    box-sizing: border-box;
+    border: 0.6em solid #fff;
+    border-radius: 50%;
+    animation: demo17-loading 3s 0s infinite reverse linear;
+    transform: rotate(0deg);
+}
+.demo17-loading span {
+    content: '';
+    width: 1em;
+    height: 3em;
+    border-radius: 0.2em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.demo17-loading span:nth-of-type(2) {
+    transform: translate(-50%, -50%) rotate(60deg);
+}
+.demo17-loading span:nth-of-type(3) {
+    transform: translate(-50%, -50%) rotate(120deg);
+}
+.demo17-loading span:before,
+.demo17-loading span:after {
+    box-sizing: border-box;
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -1em;
+    width: 100%;
+    border: 0.5em solid transparent;
+    border-left-width: 0.2em;
+    border-right-width: 0.2em;
+    transform: translate(-50%, 0);
+    border-bottom-color: white;
+}
+.demo17-loading span:after {
+    top: auto;
+    bottom: -1em;
+    border-top-color: white;
+    border-bottom-color: transparent;
+}
+@keyframes demo17-loading {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 16 ----------------- */
+/* ----------------------------------------- */
+.demo18 {
+    background: Mediumseagreen;
+}
+.demo18-loading {
+    font-size: 10px;
+    width: 5em;
+    height: 5em;
+    position: relative;
+}
+.demo18-loading:before {
+    content: 'LOADING';
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    line-height: 1em;
+    font-weight: bold;
+    color: Mediumseagreen;
+    font-family: sans-serif;
+    box-shadow: 0 0 1px rgba(#fff, 0.6);
+    top: 50%;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    animation: demo18-loading-anim 1s 0s infinite ease-in-out alternate;
+    opacity: 0.5;
+}
+@keyframes demo18-loading-anim {
+    0% {
+        transform: translate(-50%, -50%) scale(1, 1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(0, 1);
+        opacity: 1;
+    }
+    50.001% {
+        transform: translate(-50%, -50%) scale(0, 1);
+        opacity: 0.5;
+    }
+    99.999% {
+        transform: translate(-50%, -50%) scale(-1, 1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1, 1);
+        opacity: 1;
+    }
+}
+
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 19 ----------------- */
+/* ----------------------------------------- */
+.demo19 {
+    background: Cornflowerblue;
+}
+.demo19-loading {
+    font-size: 10px;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    position: relative;
+}
+.demo19-loading span {
+    width: 1em;
+    height: 3.2em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.demo19-loading span:before,
+.demo19-loading span:after {
+    content: '';
+    width: 0.6em;
+    height: 0.6em;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%);
+
+}
+.demo19-loading span:after {
+    top: auto;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+}
+
+.demo19-loading {
+    @for $i from 0 through 4 {
+        span:nth-of-type(#{$i+1}) {
+            transform: translate(-50%, -50%) rotate(#{(360 / 10 * $i) * 1deg});
+            $delay : (0.1 * $i) * 1s;
+            animation: demo19-loading-anim 1s $delay infinite alternate;
+        }
+    }
+}
+
+@keyframes demo19-loading-anim {
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* ----------------------------------------- */
+/* --------------- DEMO 20 ----------------- */
+/* ----------------------------------------- */
+.demo20 {
+    background: #bada55;
+}
+.demo20-loading {
+    font-size: 10px;
+    width: 4em;
+    height: 3em;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.demo20-loading:before,
+.demo20-loading:after,
+.demo20-loading span {
+    content: '';
+    width: 0.8em;
+    height: 0.8em;
+    margin: 0.2em;
+    border-radius: 50%;
+    background: #fff;
+    display: block;
+}
+.demo20-loading:before {
+    order: 1;
+    animation: demo20-loading-anim 1s 0s infinite ease-in-out alternate;
+}
+.demo20-loading:after {
+    order: 2;
+    animation: demo20-loading-anim 1s 0.3s infinite ease-in-out alternate;
+}
+.demo20-loading span {
+    order: 3;
+    animation: demo20-loading-anim 1s 0.6s infinite ease-in-out alternate;
+}
+@keyframes demo20-loading-anim {
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
